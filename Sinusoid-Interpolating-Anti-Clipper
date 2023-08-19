@@ -7,27 +7,17 @@
 #       \ V /     ' <   | __ | \__ \   | |) | 
 #        \_/     _|\_\  |_||_| |___/   |___/  
 
-
 import librosa
 import numpy as np
 import soundfile as sf
 import os
 from tqdm import tqdm
 
+amount = input("Enter amount:")
+
 output_dir = "AntiClipper"
 
-"""INPUT FILE HERE!!!"""
-
-input_file = f"{output_dir}/input.wav"
-
-while True:
-    try:
-        amount = float(input("Enter amount:"))
-        if amount >= 0:
-            amount = 0.1
-        break
-    except ValueError:
-        print("Please enter a valid integer.")
+input_file = f"{output_dir}/test3.wav"
 
 
 def return_zero_on_error(func):
@@ -110,7 +100,6 @@ def process_audio_file(input_file):
     return sr, audio_channel_l, audio_channel_r, audio_channel_m
 
 
-@return_zero_on_error
 def anticlip(array: list, regions: list):
     appendion = []
     with tqdm(total=len(regions),
